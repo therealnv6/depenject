@@ -14,6 +14,15 @@ class PipelinedSearch(private val finder: InjectionFinder)
         }
     }
 
+    /**
+     * Get the result of the calls above.
+     *
+     * All of the [types] will be merged into a [PipelinedResult]
+     * by looping through the [InjectionFinder.binders]'s binders once,
+     * and mapping them to one and other.
+     *
+     * @return the [PipelinedResult] instance
+     */
     fun search(): PipelinedResult
     {
         val binders = finder.binders

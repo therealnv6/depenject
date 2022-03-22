@@ -10,6 +10,15 @@ class Injector : InjectionFinder()
 
     companion object
     {
+        /**
+         * Create a new [Injector] instance.
+         *
+         * Uses the [T] type parameter has parent type
+         * to register to. This parent type can be used to
+         * later on identify the injector in the [Inject.injectors] list.
+         *
+         * @return the newly created [Injector]
+         */
         inline fun <reified T : Any> create(): Injector
         {
             return Injector().also {
@@ -31,6 +40,9 @@ class Injector : InjectionFinder()
     }
 }
 
+/**
+ * Simple [ReadWriteProperty] implementation to use our own [InjectionBinding.instance] variable.
+ */
 class InjectedReadWriteProperty<T : Any>(private val binding: InjectionBinding<T>) : ReadWriteProperty<Any?, T>
 {
     override fun getValue(thisRef: Any?, property: KProperty<*>): T

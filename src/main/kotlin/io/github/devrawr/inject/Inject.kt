@@ -1,6 +1,7 @@
 package io.github.devrawr.inject
 
 import io.github.devrawr.inject.binding.InjectionBinding
+import io.github.devrawr.inject.pipeline.PipelinedSearch
 import kotlin.properties.ReadWriteProperty
 
 object Inject : InjectionFinder()
@@ -23,5 +24,10 @@ object Inject : InjectionFinder()
     override fun <T : Any> inject(type: Class<T>, name: String): ReadWriteProperty<Any?, T>
     {
         return injectors.values.first().inject(type, name)
+    }
+
+    override fun pipelined(): PipelinedSearch
+    {
+        return injectors.values.first().pipelined()
     }
 }

@@ -8,6 +8,18 @@ abstract class InjectionFinder
 {
     abstract val binders: Map<Class<*>, MutableList<InjectionBinding<*>>>
 
+    /**
+     * Inject a variable as a certain binder.
+     *
+     * Finds a [InjectionBinding] by the provided [T] class type.
+     *
+     * Uses the provided [name] to (potentially) identify
+     * the binder with. Returns any binder if the identifier is "*".
+     *
+     * @param type the type to find the [InjectionBinding] with
+     * @param name the identifier used to identify binders
+     * @return a [ReadWriteProperty], used to get the variable's value from.
+     */
     open fun <T : Any> inject(type: Class<T>, name: String = "*"): ReadWriteProperty<Any?, T>
     {
         val binder = this
@@ -19,6 +31,16 @@ abstract class InjectionFinder
         return InjectedReadWriteProperty(binder as InjectionBinding<T>)
     }
 
+    /**
+     * Get a [PipelinedSearch] object from the current [InjectionFinder]
+     *
+     * The pipelined search can be used for further optimizing
+     * your program's startup (or other injection fetching) by
+     * simply merging several calls into a several one, allowing us to
+     * only have to loop through the binder list once.
+     *
+     * @return new instance of the [PipelinedSearch] object.
+     */
     open fun pipelined(): PipelinedSearch
     {
         return PipelinedSearch(this)

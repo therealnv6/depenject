@@ -19,4 +19,9 @@ class PipelinedResult(
 
         return InjectedReadWriteProperty(binder as InjectionBinding<T>)
     }
+
+    override fun pipelined(): PipelinedSearch
+    {
+        throw RuntimeException("Not allowed to call pipelined() from a ${this.javaClass.simpleName} instance.")
+    }
 }
