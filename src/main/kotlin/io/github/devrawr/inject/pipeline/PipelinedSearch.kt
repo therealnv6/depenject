@@ -26,12 +26,18 @@ class PipelinedSearch(private val finder: InjectionFinder)
 
             if (id != null)
             {
-                for (binding in binder.value)
+                if (id == "*")
                 {
-                    if (id == "*" || id == binding.name)
+                    results[binder.key] = binder.value.first()
+                } else
+                {
+                    for (binding in binder.value)
                     {
-                        results[binder.key] = binding
-                        break
+                        if (id == binding.name)
+                        {
+                            results[binder.key] = binder.value.first()
+                            break
+                        }
                     }
                 }
             }
