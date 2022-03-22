@@ -35,7 +35,7 @@ class PipelinedSearch(private val finder: InjectionFinder)
                     {
                         if (id == binding.name)
                         {
-                            results[binder.key] = binder.value.first()
+                            results[binder.key] = binding
                             break
                         }
                     }
