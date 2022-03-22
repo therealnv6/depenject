@@ -25,7 +25,8 @@
 
 If you prefer to not use annotations and are not planning to use this for production, feel free to test it out and/or
 use it for your own projects. Other than that, it's just a simple library I made for fun. Not expecting people to
-actually use it.
+actually use it. [flavor](https://github.com/GrowlyX/flavor) is a very goot alternative, which has been tested way more
+than depenject, and has been tested on several occasions by the author, [GrowlyX](https://github.com/GrowlyX)
 
 # Usage
 
