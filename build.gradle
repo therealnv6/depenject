@@ -1,6 +1,5 @@
 plugins {
     id 'org.jetbrains.kotlin.jvm' version '1.6.10'
-    id 'maven-publish'
 }
 
 group 'io.github.devrawr.inject'
@@ -13,14 +12,6 @@ repositories {
 dependencies {
     api "org.jetbrains.kotlin:kotlin-stdlib"
     testApi 'org.junit.jupiter:junit-jupiter:5.8.2'
-}
-
-publishing {
-    publications {
-        maven(MavenPublication) {
-            from components.java
-        }
-    }
 }
 
 test {
